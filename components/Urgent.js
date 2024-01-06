@@ -1,28 +1,24 @@
 "use client"
 import { useState } from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faTrash} from '@fortawesome/free-solid-svg-icons';
+import { useSelector} from 'react-redux';
+import { TERipple } from "tw-elements-react";
 
-import {useDispatch} from 'react-redux';
-
-function Urgent(props) {
+function Urgent({task, id, onDelete}) {
   
-const dispatch = useDispatch()
-
-// const deleteFromStore = (task) => {
-//       dispatch(deleteUrgent(task))
-// }
-
 const [isComplete, setIsComplete] = useState(false)
 
-let taskStyle ={}
+
+const handleDelete = () => {
+  onDelete(id);
+};
+
+let taskStyle =""
 
 if(isComplete){
-    taskStyle = {"text-decoration" : "line-through"}
-}
+    taskStyle =  "line-through"}
 
   return (
-    <div className="flex justify-between items-center bg-white mt-2 rounded-md h-10">
+    <div className="flex justify-between items-center bg-white mt-4 rounded-md h-10">
       <div className="flex justify-between mx-2 items-center w-full">
             <div className="flex content-center">
             <div className="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
@@ -34,13 +30,21 @@ if(isComplete){
           aria-label="..." 
           onChange={(e)=> setIsComplete(!isComplete)}/>
         </div>
-        <p>{props.task}</p>
-              <span className=" self-center ml-2 inline-block whitespace-nowrap rounded-full bg-danger-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-danger-700">URGENT</span>
+        <p className={taskStyle}>{task}</p>
+              <span className=" self-center ml-2 inline-block whitespace-nowrap rounded-full bg-warning-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">URGENT</span>
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-        <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-        onClick={()=>deleteTask(props.id)}
-        </svg>
+            <TERipple rippleColor="light">
+          <button
+            type="button"
+            className="inline-block rounded-full bg-danger-400 uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-danger hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+          >
+              <svg onClick={()=>handleDelete(id)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+
+              <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+
+            </svg>
+          </button>
+        </TERipple>
         </div>
     </div>
   );

@@ -1,13 +1,19 @@
 "use client";
 import { useState } from "react";
-import { useDispatch} from "react-redux";
+import { useSelector, useDispatch} from "react-redux";
 import { login } from "../reducers/user";
 import { useRouter } from "next/navigation";
 import { TEInput, TERipple } from "tw-elements-react";
 
 
 function Login() {
+  const username = useSelector((state) => state.user.value.username)
+
   const router = useRouter();
+
+  if(username!==null){
+    router.push("/home")
+  }
 
   const [signUpFirstname, setSignUpFirstname] = useState("");
   const [signUpUsername, setSignUpUsername] = useState("");

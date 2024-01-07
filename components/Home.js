@@ -83,7 +83,7 @@ function Home() {
     const updatedUrgentTasks = urgenttasksDB.filter((data) => data._id !== taskId);
     setTasksDB(updatedTasks);
     setUrgentTasksDB(updatedUrgentTasks);
-    
+
     fetch(`https://todolist-backend-virid.vercel.app/users/deletetask/${task}`, {
       method: "DELETE",
       headers:{ "Content-Type": "application/json" },
@@ -106,6 +106,8 @@ function Home() {
   const urgent = urgenttasksDB.map((data, i) => {
     return <Urgent key={i} task={data.task} id={data._id} onDelete={deleteTask}/>;
   });
+
+  console.log(tasksDB)
 
   return (
     <div className="flex justify-center items-center h-screen">

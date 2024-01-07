@@ -37,7 +37,7 @@ function Home() {
       .then((data) => {
         setUrgentTasksDB(data.tasks);
       }); 
-  }, []);
+  }, [username]);
 
   const addTask = (task) => {
     fetch("https://todolist-backend-virid.vercel.app/users/newtask", {

@@ -26,7 +26,21 @@ function Home() {
   }
 
 
-  const fetchTasks = () => {
+  // const fetchTasks = () => {
+  //   fetch(`https://todolist-backend-virid.vercel.app/users/tasks/${username}`)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setTasksDB(data.tasks);
+  //     });
+    
+  //   fetch(`https://todolist-backend-virid.vercel.app/users/urgent/${username}`)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setUrgentTasksDB(data.tasks);
+  //     });
+  // };
+
+  useEffect(() => {
     fetch(`https://todolist-backend-virid.vercel.app/users/tasks/${username}`)
       .then((response) => response.json())
       .then((data) => {
@@ -37,11 +51,7 @@ function Home() {
       .then((response) => response.json())
       .then((data) => {
         setUrgentTasksDB(data.tasks);
-      });
-  };
-
-  useEffect(() => {
-    fetchTasks(); 
+      }); 
   }, []);
 
   const addTask = (task) => {
@@ -56,9 +66,11 @@ function Home() {
     })
     .then((response) => response.json())
     .then((data) => { 
-      console.log(data);
+      const list = data.user.tasks;
+      const newtask = list[list.length-1]
+      console.log(newtask);
       setTodo('');
-      fetchTasks(); 
+      tasksDB.push(newtask) 
     });
   };
   
@@ -72,9 +84,8 @@ function Home() {
       }),
     })
     .then((response) => response.json())
-    .then((data) => { 
-      console.log(data); 
-      fetchTasks();
+    .then((data) => {  
+      // fetchTasks();
     });
   }
 

@@ -79,8 +79,8 @@ function Home() {
   
   
   const deleteTask = (task) => {
-    const updatedTasks = tasksDB.filter((data) => data._id !== taskId);
-    const updatedUrgentTasks = urgenttasksDB.filter((data) => data._id !== taskId);
+    const updatedTasks = tasksDB.filter((data) => data._id !== task);
+    const updatedUrgentTasks = urgenttasksDB.filter((data) => data._id !== task);
     setTasksDB(updatedTasks);
     setUrgentTasksDB(updatedUrgentTasks);
 

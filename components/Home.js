@@ -71,9 +71,12 @@ function Home() {
     .then((data) => { 
       const list = data.user.tasks;
       const newtask = list[list.length-1]
-      console.log(newtask);
       setTodo('');
-      tasksDB.push(newtask) 
+      if(newtask.isUrgent === true){
+        urgenttasksDB.push(newtask)
+      }else{
+        tasksDB.push(newtask) 
+      }
     });
   };
   

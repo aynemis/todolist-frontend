@@ -27,13 +27,13 @@ function Home() {
 
 
   const fetchTasks = () => {
-    fetch(`http://localhost:3000/users/tasks/${username}`)
+    fetch(`https://todolist-backend-virid.vercel.app/users/tasks/${username}`)
       .then((response) => response.json())
       .then((data) => {
         setTasksDB(data.tasks);
       });
     
-    fetch(`http://localhost:3000/users/urgent/${username}`)
+    fetch(`https://todolist-backend-virid.vercel.app/users/urgent/${username}`)
       .then((response) => response.json())
       .then((data) => {
         setUrgentTasksDB(data.tasks);
@@ -45,7 +45,7 @@ function Home() {
   }, []);
 
   const addTask = (task) => {
-    fetch("http://localhost:3000/users/newtask", {
+    fetch("https://todolist-backend-virid.vercel.app/users/newtask", {
       method: "PUT",
       headers:{ "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -64,7 +64,7 @@ function Home() {
   
   
   const deleteTask = (task) => {
-    fetch(`http://localhost:3000/users/deletetask/${task}`, {
+    fetch(`https://todolist-backend-virid.vercel.app/users/deletetask/${task}`, {
       method: "DELETE",
       headers:{ "Content-Type": "application/json" },
       body: JSON.stringify({

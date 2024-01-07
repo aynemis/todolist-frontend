@@ -91,10 +91,7 @@ function Home() {
         username: username,
       }),
     })
-    .then((response) => response.json())
-    .then((data) => {  
-      // fetchTasks();
-    });
+   ;
   }
 
 
@@ -107,7 +104,6 @@ function Home() {
     return <Urgent key={i} task={data.task} id={data._id} onDelete={deleteTask}/>;
   });
 
-  console.log(tasksDB)
 
   return (
     <div className="flex justify-center items-center h-screen">

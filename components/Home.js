@@ -41,9 +41,6 @@ function Home() {
   // };
 
   useEffect(() => {
-
-    
-
     fetch(`https://todolist-backend-virid.vercel.app/users/tasks/${username}`)
       .then((response) => response.json())
       .then((data) => {
@@ -82,6 +79,11 @@ function Home() {
   
   
   const deleteTask = (task) => {
+    const updatedTasks = tasksDB.filter((data) => data._id !== taskId);
+    const updatedUrgentTasks = urgenttasksDB.filter((data) => data._id !== taskId);
+    setTasksDB(updatedTasks);
+    setUrgentTasksDB(updatedUrgentTasks);
+    
     fetch(`https://todolist-backend-virid.vercel.app/users/deletetask/${task}`, {
       method: "DELETE",
       headers:{ "Content-Type": "application/json" },

@@ -25,21 +25,6 @@ function Home() {
     dispatch(logout());
   }
 
-
-  // const fetchTasks = () => {
-  //   fetch(`https://todolist-backend-virid.vercel.app/users/tasks/${username}`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setTasksDB(data.tasks);
-  //     });
-    
-  //   fetch(`https://todolist-backend-virid.vercel.app/users/urgent/${username}`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setUrgentTasksDB(data.tasks);
-  //     });
-  // };
-
   useEffect(() => {
     fetch(`https://todolist-backend-virid.vercel.app/users/tasks/${username}`)
       .then((response) => response.json())

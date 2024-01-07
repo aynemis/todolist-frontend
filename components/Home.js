@@ -17,7 +17,7 @@ function Home() {
   const [tasksDB, setTasksDB]=useState([])
   const [urgenttasksDB, setUrgentTasksDB]=useState([])
 
-  const username = useSelector((state) => state.user.value.username)
+  
   const firstname = useSelector( (state)  => state.user.value.firstname)
   
   function handleLogout() {
@@ -41,6 +41,9 @@ function Home() {
   // };
 
   useEffect(() => {
+
+    const username = useSelector((state) => state.user.value.username)
+    
     fetch(`https://todolist-backend-virid.vercel.app/users/tasks/${username}`)
       .then((response) => response.json())
       .then((data) => {
